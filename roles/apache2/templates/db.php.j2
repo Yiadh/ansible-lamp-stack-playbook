@@ -1,0 +1,8 @@
+<?php
+
+$connection = new PDO('mysql:host=database;dbname=demo', '{{ mysql_username }}', '{{ mysql_password }}');
+$statement  = $connection->query('SELECT message FROM demo');
+
+echo "{{inventory_hostname}}\n";
+echo $statement->fetchColumn();
+echo "\n";

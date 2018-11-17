@@ -1,0 +1,4 @@
+ansible_port: 2202
+
+mysql_username: guest2
+mysql_password: pass2

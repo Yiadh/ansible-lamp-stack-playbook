@@ -1,0 +1,7 @@
+ansible_port: 2200
+
+pool_hosts:
+  - hostname: web1-srv
+    weight: 1
+  - hostname: web2-srv
+    weight: 2

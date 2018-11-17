@@ -1,0 +1,19 @@
+---
+# tasks file for common
+- name: 1. Add IP address of all hosts to all hosts
+  lineinfile:
+    dest: /etc/hosts
+    regexp: '.*{{ item.key }}$'
+    line: "{{ item.value }} {{ item.key }}"
+    state: present
+    unsafe_writes: true
+  loop: "{{ lookup('dict', ip_addresses) }}"
+
+- name: 2. check that each node is able to reach the other nodes
+  command: ping -c 1 "{{ item }}"
+  changed_when: false
+  with_items:
+    - webserver1
+    - webserver2
+    - database
+    - loadbalancer

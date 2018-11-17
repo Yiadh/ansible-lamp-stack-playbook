@@ -1,0 +1,19 @@
+---
+# tasks file for apache2
+- name: 1. install Apache
+  apt: name=apache2 state=present
+
+- name: 2. install PHP module for Apache
+  apt: name=libapache2-mod-php state=present
+
+- name: 3. Install MySQL extension for PHP
+  apt: name=php-mysql state=present
+
+- name: 4. start Apache
+  service: name=apache2 state=started enabled=yes
+
+- name: 5. install Hello World PHP script
+  copy: src=index.php dest=/var/www/html/index.php mode=0664
+
+- name: 6. install Hello World PHP script with database
+  template: src=db.php.j2 dest=/var/www/html/db.php mode=0664

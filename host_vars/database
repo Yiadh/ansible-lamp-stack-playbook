@@ -1,0 +1,17 @@
+ansible_port: 2203
+
+mysql_users:
+  - username: admin
+    password: password
+    hostname: '%'
+    priv: '*.*:ALL'
+      
+  - username: guest1
+    password: pass1
+    hostname: '%'
+    priv: '*.*:SELECT'
+
+  - username: guest2
+    password: pass2
+    hostname: webserver2
+    priv: '*.*:SELECT'

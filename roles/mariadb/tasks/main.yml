@@ -1,0 +1,32 @@
+---
+# tasks file for mariadb
+- name: 1. Install MariaDB server package
+  apt: name=mariadb-server state=present
+
+- name: 1. Add IP address of all hosts to all hosts
+  lineinfile:
+    dest: /etc/mysql/mariadb.conf.d/50-server.cnf
+    regexp: '^bind-address.*'
+    line: "bind-address = {{ inventory_hostname }}"
+    state: present
+    unsafe_writes: true
+
+- name: 2. Start Mysql Service
+  service: name=mysql state=started enabled=true
+
+- name: Install python Mysql package #required for mysql_db tasks
+  apt: name=python-mysqldb state=present
+
+- name: 3. Create a new database
+  mysql_db: name=demo state=present collation=utf8_general_ci
+
+- name: 4. Create databases users
+  mysql_user: name={{ item.username }} password={{ item.password }} priv={{ item.priv }} host={{ item.hostname }} state=present
+  with_items: "{{ mysql_users }}"
+
+- name: 5a. Copy sample data
+  copy: src=dump.sql dest=/tmp/dump.sql
+
+- name: 5b. Insert sample data
+  mysql_db: name=demo state=import target=/tmp/dump.sql
+  changed_when: false

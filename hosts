@@ -1,0 +1,9 @@
+[webservers]
+webserver1
+webserver2
+
+[databases]
+database
+
+[loadbalancers]
+loadbalancer

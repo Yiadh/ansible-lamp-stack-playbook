@@ -1,0 +1,31 @@
+---
+# tasks file for haproxy
+- name: 1. install haproxy
+  apt: name=haproxy state=present
+
+- name: 2. configure haproxy
+  copy: src=haproxy.cfg dest=/etc/haproxy/haproxy.cfg
+
+- name: 3. start haproxy
+  service: name=haproxy state=started enabled=true
+
+- name: 4. enable servers in 'LB' backend pool
+  haproxy:
+    state: enabled
+    host: '{{ item.hostname }}'
+    socket: /run/haproxy/admin.sock
+    weight: '{{ item.weight }}'
+    backend: LB
+  with_items: "{{ pool_hosts }}"
+
+#- name: 2. configure haproxy logs
+
+#- name: 3. enable UDP syslog reception
+
+#- name: 4. restart the rsyslog service to update the new changes
+
+#- name: 5. configure HAProxy global settings
+
+#- name: 6. define front-end and back-end
+
+#- name: 7. restart the HAProxy and make it persistent at system startup
