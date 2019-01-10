@@ -1,5 +1,8 @@
 ansible_port: 2203
 
+db_username: admin
+db_password: password
+
 mysql_users:
   - username: admin
     password: password

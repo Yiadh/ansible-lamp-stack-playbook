@@ -17,15 +17,3 @@
     weight: '{{ item.weight }}'
     backend: LB
   with_items: "{{ pool_hosts }}"
-
-#- name: 2. configure haproxy logs
-
-#- name: 3. enable UDP syslog reception
-
-#- name: 4. restart the rsyslog service to update the new changes
-
-#- name: 5. configure HAProxy global settings
-
-#- name: 6. define front-end and back-end
-
-#- name: 7. restart the HAProxy and make it persistent at system startup

@@ -1,10 +1,10 @@
-#- hosts: all
-#  roles:
-#    - common
+- hosts: all
+  roles:
+    - common
 
-#- hosts: webservers
-#  roles:
-#    - apache2
+- hosts: webservers
+  roles:
+    - apache2
 
 - hosts: databases
   roles:

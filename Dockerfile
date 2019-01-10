@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 
 RUN apt-get update && apt-get install -y openssh-server && apt-get install -y python
-RUN apt-get install -y net-tools curl iputils-ping less netcat nano
+RUN apt-get update && apt-get install -y net-tools curl iputils-ping less netcat nano
 RUN mkdir /var/run/sshd
 RUN echo 'root:screencast' | chpasswd
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config

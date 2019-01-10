@@ -12,8 +12,10 @@
 - name: 4. start Apache
   service: name=apache2 state=started enabled=yes
 
-- name: 5. install Hello World PHP script
+- name: 5. install static Hello World PHP script
   copy: src=index.php dest=/var/www/html/index.php mode=0664
+  notify: check static page
 
-- name: 6. install Hello World PHP script with database
+- name: 6. install dynamic Hello World PHP script with database
   template: src=db.php.j2 dest=/var/www/html/db.php mode=0664
+  notify: check dynamic page

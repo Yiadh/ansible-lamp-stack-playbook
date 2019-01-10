@@ -1,2 +1,9 @@
 ---
 # handlers file for apache2
+- name: check static page
+  uri:
+    url: "http://{{ inventory_hostname }}:80/index.php"
+
+- name: check dynamic page
+  uri:
+    url: "http://{{ inventory_hostname }}:80/db.php"
