@@ -2,13 +2,13 @@
   roles:
     - common
 
-- hosts: webservers
-  roles:
-    - apache2
-
 - hosts: databases
   roles:
     - mariadb
+
+- hosts: webservers
+  roles:
+    - apache2
 
 - hosts: loadbalancers
   roles:
